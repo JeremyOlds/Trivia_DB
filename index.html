@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" href="https://bcw.blob.core.windows.net/public/img/9977764104160066">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/7.1.96/css/materialdesignicons.min.css"
+    integrity="sha512-NaaXI5f4rdmlThv3ZAVS44U9yNWJaUYWzPhvlg5SC7nMRvQYV9suauRK3gVbxh7qjE33ApTPD+hkOW78VSHyeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="assets/style/main.css">
+  <link rel="stylesheet" href="assets/style/style.css">
+  <title>Trivia_DB</title>
+</head>
+
+<body>
+  <!-- SECTION -->
+  <header>
+    <nav class="navbar navbar-dark navbar-expand bg-dark text-light no-select">
+      <a class="navbar-brand ms-3" href="#">
+        <img src="https://codeworks.blob.core.windows.net/public/assets/img/cw-mark.png" height="45" alt=""
+          loading="lazy">
+        <span class="ms-2">Trivia_DB</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <!-- NAVLINKS -->
+          <button class="btn btn-primary" onclick="app.QuestionsController.selectRandomQuestion()">Get a
+            Question</button>
+          <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#categorySelect">Choose a Category</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- SECTION -->
+  <main id="router-view">
+
+    <div class="container-fluid ">
+      <section class="row my-3 title">
+        <div class="col-12 text-center">
+          <p>Score : <span id="score">0</span></p>
+        </div>
+        <div class="col-12 d-flex justify-content-center ">
+          <img class="image-adjust"
+            src="https://res.cloudinary.com/teepublic/image/private/s--TTpGKVii--/c_crop,x_10,y_10/c_fit,w_924/c_crop,g_north_west,h_1260,w_1050,x_-78,y_-76/co_rgb:ffeeaa,e_colorize,u_Misc:One%20Pixel%20Gray/c_scale,g_north_west,h_1260,w_1050/fl_layer_apply,g_north_west,x_-78,y_-76/bo_0px_solid_white/t_Resized%20Artwork/c_fit,g_north_west,h_1054,w_1054/co_ffffff,e_outline:51/co_ffffff,e_outline:inner_fill:51/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1606658621/production/designs/16652356_2.jpg"
+            alt="who wants to be a millionaire icon">
+        </div>
+      </section>
+
+      <!-- SECTION Questions and answers -->
+      <section id="question" class="row mt-5 questions">
+        <!-- <div class="col-12 d-flex justify-content-center">
+          <h2>Question goes Here</h2>
+        </div>
+
+        <div class="row justify-content-around px-5 text-light">
+          <div class="col-3 py-4 text-center bg-dark">
+            <h3>Answer 1</h3>
+          </div>
+          <div class="col-3 py-4 text-center bg-dark">
+            <h3>Answer 2</h3>
+          </div>
+        </div> -->
+
+
+      </section>
+    </div>
+
+  </main>
+
+  <!-- SECTION -->
+
+  <div class="offcanvas offcanvas-top" tabindex="-1" id="categorySelect">
+    <div class="offcanvas-header">
+      <h5>Select a Category</h5>
+    </div>
+    <div class="offcanvas-body">
+      <form onsubmit="app.QuestionsController.chooseCategory(event)">
+        <fieldset>
+          <input type="radio" id="mythology" name="category" value="20" required>
+          <label for="mythology">Mythology</label>
+
+          <input type="radio" id="computers" name="category" value="18" required>
+          <label for="computers">Computers</label>
+
+          <input type="radio" id="art" name="category" value="25" required>
+          <label for="art">Art</label>
+
+          <input type="radio" id="history" name="category" value="23" required>
+          <label for="history">History</label>
+
+          <input type="radio" id="animals" name="category" value="27" required>
+          <label for="animals">Animals</label>
+
+        </fieldset>
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"
+    integrity="sha512-odNmoc1XJy5x1TMVMdC7EMs3IVdItLPlCeL5vSUPN2llYKMJ2eByTTAIiiuqLg+GdNr9hF6z81p27DArRFKT7A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.3.10/dist/sweetalert2.all.min.js"
+    integrity="sha256-hw7v8jZF/rFEdx1ZHepT4D73AFTHLu/P9kEyrNesRyc=" crossorigin="anonymous"></script>
+  <script src="app/App.js" type="module"></script>
+
+</body>
+
+</html>
